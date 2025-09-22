@@ -1,11 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer id="sobre" className="py-16 relative" style={{ backgroundColor: '#000000' }}>
+    <footer
+      id="sobre"
+      className="py-16 relative"
+      style={{ backgroundColor: "#000000" }}
+    >
       <div className="container">
-
         {/* ============ MOBILE (igual já estava) ============ */}
         <div className="md:hidden">
           <img
@@ -16,21 +19,36 @@ const Footer = () => {
 
           <h3
             className="font-bold text-left mb-2"
-            style={{ color: '#F3EDE0', fontFamily: 'Work Sans, sans-serif', fontSize: 28, lineHeight: 1 }}
+            style={{
+              color: "#F3EDE0",
+              fontFamily: "Work Sans, sans-serif",
+              fontSize: 28,
+              lineHeight: 1,
+            }}
           >
             Onde estamos
           </h3>
           <p
             className="mb-10 text-left"
-            style={{ color: '#F3EDE0', fontFamily: '"Roboto Mono", monospace', fontSize: 12, lineHeight: 1.35 }}
+            style={{
+              color: "#F3EDE0",
+              fontFamily: '"Roboto Mono", monospace',
+              fontSize: 12,
+              lineHeight: 1.35,
+            }}
           >
-            Nosso escritório é em Bento Gonçalves - RS,
-            mas atendemos de forma online todo Brasil.
+            Nosso escritório é em Bento Gonçalves - RS, mas atendemos de forma
+            online todo Brasil.
           </p>
 
           <h3
             className="font-bold text-left mb-4"
-            style={{ color: '#F3EDE0', fontFamily: 'Work Sans, sans-serif', fontSize: 28, lineHeight: 1 }}
+            style={{
+              color: "#F3EDE0",
+              fontFamily: "Work Sans, sans-serif",
+              fontSize: 28,
+              lineHeight: 1,
+            }}
           >
             Siga a Mundo Pró
           </h3>
@@ -38,15 +56,27 @@ const Footer = () => {
           <div className="flex gap-8 mb-10">
             <a
               href="https://www.instagram.com/mundoproviagens/"
-              target="_blank" rel="noopener noreferrer"
-              style={{ color: '#F3EDE0', fontFamily: '"Roboto Mono", monospace', fontSize: 14, textDecoration: 'none' }}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#F3EDE0",
+                fontFamily: '"Roboto Mono", monospace',
+                fontSize: 14,
+                textDecoration: "none",
+              }}
             >
               Instagram
             </a>
             <a
               href="https://www.linkedin.com/company/mundo-pr%C3%B3-viagens/"
-              target="_blank" rel="noopener noreferrer"
-              style={{ color: '#F3EDE0', fontFamily: '"Roboto Mono", monospace', fontSize: 14, textDecoration: 'none' }}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#F3EDE0",
+                fontFamily: '"Roboto Mono", monospace',
+                fontSize: 14,
+                textDecoration: "none",
+              }}
             >
               Linkedin
             </a>
@@ -66,11 +96,11 @@ const Footer = () => {
                   width: 210,
                   height: 64,
                   borderRadius: 9999,
-                  border: '2px solid #F3EDE0',
-                  color: '#F3EDE0',
-                  fontFamily: 'Work Sans, sans-serif',
+                  border: "2px solid #F3EDE0",
+                  color: "#F3EDE0",
+                  fontFamily: "Work Sans, sans-serif",
                   fontWeight: 700,
-                  letterSpacing: '0.3px'
+                  letterSpacing: "0.3px",
                 }}
               >
                 FALE CONOSCO
@@ -82,13 +112,14 @@ const Footer = () => {
           <div className="pt-10 mt-10 border-t border-gray-700 text-left">
             <p
               style={{
-                color: '#8A8A8A',
+                color: "#8A8A8A",
                 fontFamily: '"Roboto Mono", monospace',
                 fontSize: 12,
-                lineHeight: 1.4
+                lineHeight: 1.4,
               }}
             >
-              © {new Date().getFullYear()} Mundo Pró Viagens. Todos os direitos reservados.
+              © {new Date().getFullYear()} Mundo Pró Viagens. Todos os direitos
+              reservados.
             </p>
           </div>
         </div>
@@ -108,31 +139,28 @@ const Footer = () => {
           </motion.div>
 
           {/* Coluna 2: ONDE ESTAMOS (Roboto Mono, compacto) */}
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            className="space-y-3"
-          >
+          <motion.div initial={{ opacity: 1, y: 0 }} className="space-y-3">
             <p
               style={{
-                color: '#F3EDE0',
+                color: "#F3EDE0",
                 fontFamily: '"Roboto Mono", monospace',
-                fontSize: '16px',
-                lineHeight: 1.2
+                fontSize: "16px",
+                lineHeight: 1.2,
               }}
             >
               Onde estamos
             </p>
             <p
               style={{
-                color: '#F3EDE0',
+                color: "#F3EDE0",
                 fontFamily: '"Roboto Mono", monospace',
-                fontSize: '13px',
+                fontSize: "13px",
                 lineHeight: 1.35,
-                maxWidth: 420
+                maxWidth: 420,
               }}
             >
-              Nosso escritório é em Bento Gonçalves - RS,
-              mas atendemos de forma online todo Brasil.
+              Nosso escritório é em Bento Gonçalves - RS, mas atendemos de forma
+              online todo Brasil.
             </p>
           </motion.div>
 
@@ -144,10 +172,10 @@ const Footer = () => {
             <div className="space-y-3">
               <p
                 style={{
-                  color: '#F3EDE0',
+                  color: "#F3EDE0",
                   fontFamily: '"Roboto Mono", monospace',
-                  fontSize: '16px',
-                  lineHeight: 1.2
+                  fontSize: "16px",
+                  lineHeight: 1.2,
                 }}
               >
                 Siga a Mundo Pró
@@ -157,17 +185,27 @@ const Footer = () => {
               <div className="flex flex-col gap-2">
                 <a
                   href="https://www.instagram.com/mundoproviagens/"
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:opacity-90"
-                  style={{ color: '#F3EDE0', fontFamily: '"Roboto Mono", monospace', fontSize: '13px' }}
+                  style={{
+                    color: "#F3EDE0",
+                    fontFamily: '"Roboto Mono", monospace',
+                    fontSize: "13px",
+                  }}
                 >
                   Instagram
                 </a>
                 <a
                   href="https://www.linkedin.com/company/mundo-pr%C3%B3-viagens/"
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:opacity-90"
-                  style={{ color: '#F3EDE0', fontFamily: '"Roboto Mono", monospace', fontSize: '13px' }}
+                  style={{
+                    color: "#F3EDE0",
+                    fontFamily: '"Roboto Mono", monospace',
+                    fontSize: "13px",
+                  }}
                 >
                   Linkedin
                 </a>
@@ -187,11 +225,11 @@ const Footer = () => {
                   width: 260,
                   height: 64,
                   borderRadius: 9999,
-                  border: '2px solid #F3EDE0',
-                  color: '#F3EDE0',
-                  fontFamily: 'Work Sans, sans-serif',
+                  border: "2px solid #F3EDE0",
+                  color: "#F3EDE0",
+                  fontFamily: "Work Sans, sans-serif",
                   fontWeight: 700,
-                  letterSpacing: '0.3px'
+                  letterSpacing: "0.3px",
                 }}
               >
                 FALE CONOSCO
@@ -207,12 +245,13 @@ const Footer = () => {
         >
           <p
             style={{
-              color: '#8A8A8A',
+              color: "#8A8A8A",
               fontFamily: '"Roboto Mono", monospace',
-              fontSize: '0.875rem'
+              fontSize: "0.875rem",
             }}
           >
-            © {new Date().getFullYear()} Mundo Pró Viagens. Todos os direitos reservados.
+            © {new Date().getFullYear()} Mundo Pró Viagens. Todos os direitos
+            reservados.
           </p>
         </motion.div>
       </div>
