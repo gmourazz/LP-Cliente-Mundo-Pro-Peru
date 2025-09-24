@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 
 const ScrollToTopButton = ({
-  threshold = 300,             // quando começa a aparecer
-  right = 32,                  // px
-  bottom = 32,                 // px
+  threshold = 300,
+  right = 32,
+  bottom = 32,
   className = '',
+  hideOnMobile = true, // <— por padrão, não renderiza no mobile
 }) => {
+  // NÃO renderiza no mobile
+  if (hideOnMobile && typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches) {
+    return null;
+  }
+
   const [isVisible, setIsVisible] = useState(false);
   const ticking = useRef(false);
   const reduceMotion = useReducedMotion();
@@ -24,27 +30,22 @@ const ScrollToTopButton = ({
 
   const scrollToTop = useCallback(() => {
     if (typeof window === 'undefined') return;
-    window.scrollTo({
-      top: 0,
-      behavior: reduceMotion ? 'auto' : 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }, [reduceMotion]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    // chama uma vez para estado inicial correto
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [onScroll]);
 
-  // estilos com suporte a safe-area (iOS)
   const style = {
     right,
-    // empurra respeitando safe-area e permitindo ajuste fino via prop
     bottom: `max(${bottom}px, env(safe-area-inset-bottom, 0px) + ${bottom}px)`,
+    width: 56,
+    height: 56,
     backgroundColor: '#A0D3F1',
-    color: '#222223',
   };
 
   return (
@@ -55,7 +56,7 @@ const ScrollToTopButton = ({
           onClick={scrollToTop}
           aria-label="Voltar ao topo"
           title="Voltar ao topo"
-          className={`fixed z-50 p-3 rounded-full shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 ${className}`}
+          className={`scroll-to-top absolute z-50 flex items-center justify-center rounded-full shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 ${className}`}
           style={style}
           initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -63,7 +64,7 @@ const ScrollToTopButton = ({
           whileHover={reduceMotion ? {} : { scale: 1.08 }}
           whileTap={reduceMotion ? {} : { scale: 0.95 }}
         >
-          <ArrowUp className="w-6 h-6" aria-hidden="true" />
+          <ArrowUp width={22} height={22} stroke="#111" strokeWidth={2.2} />
         </motion.button>
       )}
     </AnimatePresence>

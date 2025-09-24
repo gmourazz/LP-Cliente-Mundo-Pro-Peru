@@ -25,104 +25,78 @@
   --color-black: #000000;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body, html {
-  font-family: 'Work Sans', sans-serif;
+html, body {
+  font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background-color: var(--color-white);
   color: var(--color-primary);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* ===== Esconder a barra de rolagem, mantendo o scroll ===== */
+  -ms-overflow-style: none; /* IE/Edge legado */
+  scrollbar-width: none;    /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {    /* Chrome / Safari / Edge (WebKit) */
+  display: none;
 }
 
+/* Utilitário para qualquer container com scroll que queira sem barra */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Use Work Sans só em headings por padrão */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Work Sans', sans-serif;
   font-weight: 700;
 }
 
-p, span, a, div, button, li {
-    font-family: 'Work Sans', sans-serif;
-}
+/* Utilitário simples pra Roboto Mono quando quiser via classe */
+.font-roboto-mono { font-family: 'Roboto Mono', monospace; }
 
+/* Container de 1320px */
 .container {
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 20px;
 }
+@media (min-width: 768px) { .container { padding: 0 30px; } }
+@media (min-width: 1024px){ .container { padding: 0 40px; } }
 
-@media (min-width: 768px) {
-  .container {
-    padding: 0 30px;
+/* Marquee genérica (o Hero usa a própria animação) */
+.marquee { overflow: hidden; white-space: nowrap; position: relative; }
+.marquee-content { display: inline-block; animation: marquee 40s linear infinite; padding-left: 100%; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* Accordion */
+.accordion-content { overflow: hidden; transition: max-height 0.3s ease-out; }
+
+/* Embla (carrossel) */
+.embla { overflow: hidden; }
+.embla__container { display: flex; }
+.embla__slide { flex: 0 0 100%; min-width: 0; }
+.embla-dots { display: flex; justify-content: center; align-items: center; margin-top: 1rem; }
+.embla-dot { width: 8px; height: 8px; margin: 0 4px; border-radius: 50%; background-color: #d1d5db; transition: background-color 0.3s ease; }
+.embla-dot--selected { background-color: #AC0039; }
+
+/* === Remover o botão de scroll-to-top SOMENTE no mobile =================== */
+@media (max-width: 767px) {
+  /* Se for o nosso componente com essa classe, some no mobile */
+  .scroll-to-top {
+    display: none !important;
   }
-}
 
-@media (min-width: 1024px) {
-  .container {
-    padding: 0 40px;
+  /* Fallback: se algum outro botão/link/div renderizar o mesmo SVG ↑, esconda também */
+  button:has(> svg[viewBox="0 0 24 24"] path[d="M12 19V5"]),
+  a:has(> svg[viewBox="0 0 24 24"] path[d="M12 19V5"]),
+  div:has(> svg[viewBox="0 0 24 24"] path[d="M12 19V5"]) {
+    display: none !important;
   }
-}
-
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-}
-
-.marquee-content {
-  display: inline-block;
-  animation: marquee 40s linear infinite;
-  padding-left: 100%;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.accordion-content {
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-}
-
-.embla {
-  overflow: hidden;
-}
-
-.embla__container {
-  display: flex;
-}
-
-.embla__slide {
-  flex: 0 0 100%;
-  min-width: 0;
-}
-
-.embla-dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.embla-dot {
-  width: 8px;
-  height: 8px;
-  margin: 0 4px;
-  border-radius: 50%;
-  background-color: #d1d5db; /* gray-300 */
-  transition: background-color 0.3s ease;
-}
-
-.embla-dot--selected {
-  background-color: #AC0039; /* accent color */
 }

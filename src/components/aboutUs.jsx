@@ -43,6 +43,7 @@ const AboutUs = () => {
 
   return (
     <section
+      id="sobre" /* <- âncora para o header */
       className="relative overflow-visible pt-16 pb-28 md:py-20"
       style={{ backgroundColor: '#FD4F0D', fontFamily: '"Roboto Mono", monospace' }}
     >
@@ -50,7 +51,7 @@ const AboutUs = () => {
       <div aria-hidden className="absolute top-0 left-0 h-full" style={{ width: 8, background: 'rgba(255,255,255,0.35)' }} />
 
       <div className="container relative">
-        {/* ===== topo (texto) ===== */}
+        {/* topo (texto) */}
         <div className="grid md:grid-cols-2 md:gap-12 items-start">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
             <h1
@@ -63,30 +64,30 @@ const AboutUs = () => {
             </h1>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="mt-3 md:mt-0">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="mt-8 md:mt-0">
             <div className="space-y-3 md:space-y-4 text-[12px] md:text-[15px] leading-[1.28] md:leading-[1.35]" style={{ color: '#F9F2E1', letterSpacing: '0.1px' }}>
               <p>“A Mundo Pró nasceu da nossa inquietação. Já trabalhávamos com turismo, mas sentíamos que faltava algo para entregar uma experiência que saísse da rotina de uma agência tradicional. Focamos em criar uma identidade própria, com o objetivo de propor algo diferente, não encontrávamos espaço para isso.”</p>
               <p>“A vontade de crescer e de ser referência no turismo foi o combustível para a gente. Fez nascer o desejo em nós: criar uma agência com o nosso jeito, com conteúdo verdadeiramente conectado com quem viaja.”</p>
               <p>“Com cuidado real e atenção aos detalhes, transformamos o modo como as pessoas enxergam o ato de viajar. Hoje, seguimos crescendo com propósito, leveza e consistência.”</p>
             </div>
-            <div className="mt-4 md:mt-6 flex justify-end">
+            <div className="mt-8 md:mt-8 flex justify-end">
               <img src="/img/beneficios/assinatura.png" alt="Assinatura" className="h-[20px] md:h-[26px] w-auto object-contain" />
             </div>
           </motion.div>
         </div>
 
-        {/* ===== título “Sobre nós” (rente ao balão) ===== */}
+        {/* título “Sobre nós” */}
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative z-[10] font-extrabold text-center md:text-right px-2 md:px-12 text-[44px] sm:text-[50px] md:text-[100px] leading-[1] mb-[18px]"
+          className="relative z-[10] font-extrabold text-center md:text-right px-8 md:px-8 text-[44px] sm:text-[50px] md:text-[100px] leading-[0.70] mb-[0px]"
           style={{ color: '#F9F2E1', fontFamily: '"Work Sans", sans-serif' }}
-        >
-          Sobre nós
+        > <br></br> <strong>
+          Sobre nós </strong>
         </motion.h2>
 
-        {/* ===== balão bege envolvendo fotos + cards (somente este bloco foi ajustado) ===== */}
+        {/* balão bege envolvendo fotos + cards */}
         <div
           className="
             relative z-[5]
@@ -99,12 +100,12 @@ const AboutUs = () => {
           "
           style={{ backgroundColor: '#F9F2E1' }}
         >
-          {/* “M” só no desktop, preservado */}
+          {/* “M” apenas no desktop */}
           <div className="hidden md:block absolute left-0 -top-24 pointer-events-none opacity-70" style={{ width: 432, height: 501 }}>
             <img src="/img/beneficios/M.png" alt="Marca / M" className="w-[302px] h-[301px] object-contain" />
           </div>
 
-          {/* fotos dos funcionários — agora garantidamente DENTRO do balão bege */}
+          {/* fotos dos funcionários */}
           <div className="relative z-[1]">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               {teamPhotos.map((p, idx) => (
@@ -131,7 +132,7 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* cards azuis — continuam dentro do mesmo balão bege */}
+          {/* cards azuis */}
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-10">
             {cards.map((card, index) => (
               <motion.div
@@ -160,7 +161,7 @@ const AboutUs = () => {
             ))}
           </div>
         </div>
-        {/* ===== fim do balão bege ===== */}
+        {/* fim do balão bege */}
       </div>
     </section>
   );
