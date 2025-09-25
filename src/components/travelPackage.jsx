@@ -6,17 +6,23 @@ const SPEED = 0.7;
 const rowVariants = (fromLeft) => ({
   hidden: { opacity: 0, x: fromLeft ? -180 : 180 },
   show: {
-    opacity: 1, x: 0,
+    opacity: 1,
+    x: 0,
     transition: {
-      type: "tween", ease: [0.22, 1, 0.36, 1],
-      duration: 0.6 * SPEED, delayChildren: 0.12 * SPEED, staggerChildren: 0.10 * SPEED,
+      type: "tween",
+      ease: [0.22, 1, 0.36, 1],
+      duration: 0.6 * SPEED,
+      delayChildren: 0.12 * SPEED,
+      staggerChildren: 0.1 * SPEED,
     },
   },
 });
 const itemVariants = (fromLeft) => ({
   hidden: { opacity: 0, x: fromLeft ? -90 : 90, scale: 0.98 },
   show: {
-    opacity: 1, x: 0, scale: 1,
+    opacity: 1,
+    x: 0,
+    scale: 1,
     transition: { type: "tween", ease: [0.22, 1, 0.36, 1], duration: 0.5 * SPEED },
   },
 });
@@ -24,10 +30,28 @@ const itemVariants = (fromLeft) => ({
 /* ===== dados ===== */
 const days = [
   { day: "1º DIA", subtitle: "Chegada em Cusco", body: "Transfer até o hotel e dia livre em Cusco.", image: "/img/beneficios/primeirodia.png" },
-  { day: "2º DIA", subtitle: "Cusco – Águas Calientes", body: "Retirada no hotel de Cusco e início do trajeto de duas horas de ônibus até a estação de trem de Ollantaytambo. Ao chegar, subiremos em um trem e faremos uma viagem de uma hora e meia adentrando a cordilheira dos Andes. Chegada ao povoado de Aguas Calientes, iremos levá-lo ao hotel onde nos hospedaremos essa noite. No resto da tarde, você terá tempo livre.", image: "/img/beneficios/segundodia.png" },
-  { day: "3º DIA", subtitle: "Machu Picchu – Cusco", body: "Depois de tomar o café da manhã no hotel, pegaremos o ônibus para viver o ponto alto da viagem: Machu Picchu. Ao chegar lá, faremos uma visita guiada de duas horas. Depois, você terá outras duas horas de tempo livre para percorrer a zona ou subir por conta própria as montanhas Huayna Picchu ou Machu Picchu. A seguir, voltaremos de ônibus a Aguas Calientes, onde você terá tempo para almoçar por conta própria e seguir explorando o pequeno povoado andino. Finalizaremos a excursão voltando de trem até Ollantaytambo e de lá iremos de ônibus ao seu hotel de Cusco.", image: "/img/beneficios/terceirodia.png" },
+  {
+    day: "2º DIA",
+    subtitle: "Cusco – Águas Calientes",
+    body:
+      "Retirada no hotel de Cusco e início do trajeto de duas horas de ônibus até a estação de trem de Ollantaytambo. Ao chegar, subiremos em um trem e faremos uma viagem de uma hora e meia adentrando a cordilheira dos Andes. Chegada ao povoado de Aguas Calientes, iremos levá-lo ao hotel onde nos hospedaremos essa noite. No resto da tarde, você terá tempo livre.",
+    image: "/img/beneficios/segundodia.png",
+  },
+  {
+    day: "3º DIA",
+    subtitle: "Machu Picchu – Cusco",
+    body:
+      "Depois de tomar o café da manhã no hotel, pegaremos o ônibus para viver o ponto alto da viagem: Machu Picchu. Ao chegar lá, faremos uma visita guiada de duas horas. Depois, você terá outras duas horas de tempo livre para percorrer a zona ou subir por conta própria as montanhas Huayna Picchu ou Machu Picchu. A seguir, voltaremos de ônibus a Aguas Calientes, onde você terá tempo para almoçar por conta própria e seguir explorando o pequeno povoado andino. Finalizaremos a excursão voltando de trem até Ollantaytambo e de lá iremos de ônibus ao seu hotel de Cusco.",
+    image: "/img/beneficios/terceirodia.png",
+  },
   { day: "4º DIA", subtitle: "Vale Sagrado dos Incas", body: "Excursão ao Vale Sagrado dos Incas (13 horas). Visitando Chinchero, Moray, Maras, Salinas, Ollantaytambo e Pisac.", image: "/img/beneficios/quartodia.png" },
-  { day: "5º DIA", subtitle: "Cusco - Trilha pela Montanha Arco-Íris", body: "Entre 4h e 5h, passaremos para buscá-lo no seu hotel de Cusco para começar esta experiência que será inesquecível. A rota que seguiremos é de dificuldade alta. Recomendamos este tour exclusivamente para pessoas que não tenham problemas cardíacos. O tour é feito em altas altitudes, que alcançam aproximadamente 5.200 metros.", image: "/img/beneficios/quintodia.png" },
+  {
+    day: "5º DIA",
+    subtitle: "Cusco - Trilha pela Montanha Arco-Íris",
+    body:
+      "Entre 4h e 5h, passaremos para buscá-lo no seu hotel de Cusco para começar esta experiência que será inesquecível. A rota que seguiremos é de dificuldade alta. Recomendamos este tour exclusivamente para pessoas que não tenham problemas cardíacos. O tour é feito em altas altitudes, que alcançam aproximadamente 5.200 metros.",
+    image: "/img/beneficios/quintodia.png",
+  },
   { day: "6º DIA", subtitle: "Cusco - Lagoa Humantay", body: "Nesta excursão à Lagoa Humantay, subiremos a mais de 4.000 metros para visitar um espetáculo da natureza localizado na Cordilheira dos Andes.", image: "/img/beneficios/sextodia.png" },
   { day: "7º DIA", subtitle: "Saída Cusco - Brasil", body: "Em horário previsto, transfer para o aeroporto e volta ao Brasil.", image: "/img/beneficios/setimodia.png" },
 ];
@@ -45,6 +69,45 @@ const BALLOON_SIZE = [
 
 const OVERLAP_PX = 84;
 const NEED_EXTRA_PADDING = new Set([0, 2, 4, 6]); // 1,3,5,7 com foto à esquerda
+
+/* ===== estilos ===== */
+const TEXT_STYLES = {
+  title: (i) => ({
+    fontSize: i >= 1 && i <= 5 ? "64px" : "60px",
+    lineHeight: 0.62,
+    letterSpacing: "-0.06em",
+    marginBottom: i >= 1 && i <= 5 ? "3px" : "0px",
+  }),
+  subtitle: (i) => ({
+    fontSize: i === 1 || i === 4 || i === 5 ? "26px" : "28px",
+    lineHeight: 2,
+    paddingBottom: "0px",
+    borderBottom: "0px solid transparent",
+    marginBottom: "8px",
+  }),
+  body: (i) => ({
+    fontSize: i === 1 || i === 5 ? "12.6px" : i === 2 || i === 4 ? "12.6px" : i === 3 ? "13.2px" : "15px",
+    lineHeight: i === 1 ? 1.12 : i === 5 ? 1.16 : 1.18,
+    maxWidth: i === 1 ? "430px" : i === 2 ? "520px" : i === 3 ? "560px" : i === 4 ? "520px" : i === 5 ? "500px" : "auto",
+    letterSpacing: "-0.01em",
+  }),
+  balloonPadding: (i) => ({
+    paddingTop: i >= 1 && i <= 5 ? "18px" : "28px",
+    paddingBottom: i >= 1 && i <= 5 ? "16px" : "26px",
+  }),
+};
+
+/* ===== 2º DIA: linhas editáveis manualmente ===== */
+const day2Lines = [
+  "Retirada no hotel de Cusco e início do trajeto",
+  "de duas horas de ônibus até a estação de trem",
+  "de Ollantaytambo. Ao chegar, subiremos em um",
+  "trem e faremos uma viagem de uma hora e meia",
+  "adentrando a cordilheira dos Andes. Chegada ao",
+  "povoado de Aguas Calientes, iremos levá-lo ao",
+  "hotel onde nos hospedaremos essa noite. No",
+  "resto da tarde, você terá tempo livre.",
+];
 
 export default function TravelPackage() {
   return (
@@ -171,9 +234,16 @@ export default function TravelPackage() {
 
               let padLeft = 32;
               let padRight = 32;
-              if (imageLeft && NEED_EXTRA_PADDING.has(i)) {
-                padLeft = 32 + OVERLAP_PX;
-              }
+              if (imageLeft && NEED_EXTRA_PADDING.has(i)) padLeft = 32 + OVERLAP_PX;
+
+              const titleS = TEXT_STYLES.title(i);
+              const subS = TEXT_STYLES.subtitle(i);
+              const bodyS = TEXT_STYLES.body(i);
+              const padS = TEXT_STYLES.balloonPadding(i);
+
+              // deslocamentos de TEXTO apenas para o 2º DIA (como no seu código)
+              const shiftTitle = i === 1 ? 210 : 0;
+              const shiftInner = i === 1 ? 180 : 0;
 
               return (
                 <motion.div
@@ -198,56 +268,78 @@ export default function TravelPackage() {
                     className="relative z-10 w-full"
                     style={{ maxWidth: Math.max(w + OVERLAP_PX, 760) }}
                   >
+                    {/* TÍTULO */}
                     <div
-                      className="font-extrabold mb-0"
+                      className="font-extrabold"
                       style={{
                         color: "#FD4F0D",
                         fontFamily: '"Work Sans", sans-serif',
-                        fontSize: "60px",
-                        lineHeight: 0.8,
-                        letterSpacing: "-0.05em",
+                        ...titleS,
+                        marginLeft: shiftTitle,
                       }}
                     >
                       {d.day}
                     </div>
 
+                    {/* BALÃO */}
                     <div
                       className="rounded-[24px] shadow-xl"
                       style={{
                         backgroundColor: "#F9F2E1",
                         width: `${w}px`,
                         minHeight: `${h}px`,
-                        paddingLeft: `${padLeft}px`,
+                        paddingLeft: `${padLeft + shiftInner}px`,
                         paddingRight: `${padRight}px`,
-                        paddingTop: "28px",
-                        paddingBottom: "26px",
+                        ...padS,
                         marginLeft: imageLeft ? `-${OVERLAP_PX}px` : 0,
                         marginRight: imageLeft ? 0 : `-${OVERLAP_PX}px`,
                       }}
                     >
                       <h3
-                        className="font-extrabold mb-6"
+                        className="font-extrabold"
                         style={{
                           color: "#FD4F0D",
                           fontFamily: '"Work Sans", sans-serif',
-                          fontSize: "28px",
-                          lineHeight: 1.5,
                           letterSpacing: "-0.01em",
+                          display: "inline-block",
+                          ...subS,
                         }}
                       >
                         {d.subtitle}
                       </h3>
-                      <p
-                        style={{
-                          color: "#222223",
-                          fontFamily: '"Roboto Mono", monospace',
-                          fontSize: "15px",
-                          lineHeight: 1.25,
-                          letterSpacing: "-0.01em",
-                        }}
-                      >
-                        {d.body}
-                      </p>
+
+                      {i === 1 ? (
+                        <div
+                          style={{
+                            color: "#222223",
+                            fontFamily: '"Roboto Mono", monospace',
+                            textAlign: "left",
+                            ...bodyS,
+                            fontSize: "12.6px",
+                            lineHeight: 1.12,
+                            wordSpacing: "3.0px",
+                          }}
+                        >
+                          <div className="flex flex-col gap-1">
+                            {day2Lines.map((line, idx) => (
+                              <span key={idx} className="block">
+                                {line}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <p
+                          style={{
+                            color: "#222223",
+                            fontFamily: '"Roboto Mono", monospace',
+                            textAlign: "left",
+                            ...bodyS,
+                          }}
+                        >
+                          {d.body}
+                        </p>
+                      )}
                     </div>
                   </motion.div>
                 </motion.div>

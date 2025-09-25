@@ -216,7 +216,7 @@ const Benefits = () => {
           className="text-center mb-8 md:mb-10"
         >
           <p
-            className="mb-3 md:mb-4 text-[18px] md:text-xl leading-[1.25] tracking-[-0.005em]"
+            className="mb-3 md:mb-4 text-[18x] md:text-xl leading-[1.25] tracking-[-0.005em]"
             style={{ color: "#222223", fontFamily: '"Work Sans", sans-serif' }}
           >
             <strong>

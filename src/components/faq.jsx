@@ -236,7 +236,7 @@ export default function FAQ() {
                       color: "#FFFFFF",
                       fontFamily: '"Work Sans", sans-serif',
                       fontWeight: 900,
-                      fontSize: 15, // pedido
+                      fontSize: 13.5, // pedido
                       lineHeight: 1.1,
                       textAlign: "left",
                     }}

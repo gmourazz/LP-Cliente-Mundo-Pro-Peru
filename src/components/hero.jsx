@@ -52,7 +52,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.45, delay: 0.05 }}
-            className="self-start md:-ml-4 lg:-ml-4 md:translate-y-3"
+            className="self-start md:-ml-4 lg:-ml-2 md:translate-y-3"
           >
             <div
               className="overflow-hidden w-full md:h-[530px]"
@@ -73,34 +73,28 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Texto direita */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="self-start pt-24 pr-20"
+        {/* Texto direita */}
+        <motion.div
+          initial={{ opacity: 0, x: 12 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+          className="self-start pt-32 pr-0"   // ↓ menos padding (antes: pt-24 pr-20)
+        >
+          <div
+            className="text-[15px] leading-[1.08] max-w-[300px] tracking-[-0.01em]" // ↓ reduzimos o leading
+            style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace' }}
           >
-            <div
-              className="text-[15px] leading-[1.15] max-w-[360px] tracking-[-0.004em]"
-              style={{ color: "#222223", fontFamily: '"Roboto Mono", monospace' }}
-            >
-              Conheça de perto a história,<br />
-              a cultura e as paisagens que fazem<br />
-              do Peru um destino único. Em nosso pacote de viagem, você poderá visitar<br />
-              Machu Picchu, explorar os Andes<br />
-              e experimentar a gastronomia local.<br />
-              Tudo com hospedagem em hotéis selecionados, passeios guiados<br />
-              e uma programação pensada para<br />
-              oferecer conforto e praticidade durante a sua viagem.
-              <br /><br />
-              <strong>
-                Uma oportunidade única para viver<br />
-                a história e a natureza de<br />
-                um dos países mais fascinantes<br />
-                da América do Sul.
-              </strong>
-            </div>
-          </motion.div>
+            Conheça de perto a história, a cultura e as paisagens que fazem do Peru um destino único. Em nosso pacote de viagem, você poderá visitar Machu Picchu, explorar os Andes e experimentar a gastronomia local. Tudo com hospedagem em hotéis selecionados, passeios guiados e uma programação pensada para oferecer conforto e praticidade durante a sua viagem.
+            <br /> <br /> 
+            {/* ↓ removi o <br /><br /> para evitar linha extra */}
+            <strong className="block leading-[1.05] mt-1"> {/* ↓ forte também com leading menor */}
+              Uma oportunidade única para viver<br />
+              a história e a natureza de<br />
+              um dos países mais fascinantes<br />
+              da América do Sul.
+            </strong>
+          </div>
+        </motion.div>
         </div>
 
         {/* ===== MOBILE ===== */}
