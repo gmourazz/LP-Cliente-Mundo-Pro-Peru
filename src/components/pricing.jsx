@@ -126,7 +126,7 @@ const Pricing = () => {
                       color: "#FD4F0D",
                       fontFamily: '"Work Sans", sans-serif',
                       fontWeight: 900,
-                      fontSize: 60,
+                      fontSize: 55,
                       lineHeight: 0.95,
                       letterSpacing: "-0.01em",
                     }}
@@ -139,7 +139,7 @@ const Pricing = () => {
                       color: "#FD4F0D",
                       fontFamily: '"Work Sans", sans-serif',
                       fontWeight: 900,
-                      fontSize: 28,
+                      fontSize: 30,
                       lineHeight: 1,
                       letterSpacing: "-0.01em",
                     }}
@@ -163,15 +163,15 @@ const Pricing = () => {
                           style={{
                             fontFamily: '"Work Sans", sans-serif',
                             fontWeight: 800,
-                            fontSize: 16,
+                            fontSize: 12,
                             lineHeight: 1.1,
                           }}
                         >
                           {b.label}:
                         </p>
                         <p
-                          className="text-left md:text-[15px]"
-                          style={{ fontSize: 13, lineHeight: 1.35 }}
+                          className="text-left md:text-[10px]"
+                          style={{ fontSize: 10, lineHeight: 1.35 }}
                         >
                           {b.text}
                         </p>
@@ -180,8 +180,8 @@ const Pricing = () => {
                   </div>
                 </div>
 
-                {/* DIREITA: Preço + CTA (inalterados) */}
-                <div className="flex flex-col items-center md:items-end justify-center gap-3 md:gap-4">
+                {/* DIREITA: Preço + CTA (COLADO NO BALÃO AZUL) */}
+                <div className="flex flex-col items-center md:items-end justify-center gap-0"> {/* Gap zerado */}
                   <div
                     className="text-center shadow-md rounded-[20px] md:rounded-[24px] flex flex-col items-center justify-center md:w-[350px] md:h-[163px]"
                     style={{ backgroundColor: "#A0D3F1", width: 260, height: 130 }}
@@ -206,12 +206,13 @@ const Pricing = () => {
                     </div>
                   </div>
 
+                  {/* Botão COLADO no balão azul */}
                   <a
                     href={category.ctaHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Abrir WhatsApp para mais informações sobre ${category.name}`}
-                    className="-mt-2 md:-mt-3"
+                    className="-mt-4" /* Margem negativa para colar */
                   >
                     <Button
                       className="rounded-full transition-all duration-300 hover:scale-105"

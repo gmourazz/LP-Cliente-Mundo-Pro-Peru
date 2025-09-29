@@ -1,74 +1,57 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
+// src/components/scrollToTopButton.jsx
+import React, { useEffect, useState } from "react";
 
-const ScrollToTopButton = ({
-  threshold = 300,
-  right = 32,
-  bottom = 32,
-  className = '',
-  hideOnMobile = true, // <— por padrão, não renderiza no mobile
-}) => {
-  // NÃO renderiza no mobile
-  if (hideOnMobile && typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches) {
-    return null;
-  }
-
-  const [isVisible, setIsVisible] = useState(false);
-  const ticking = useRef(false);
-  const reduceMotion = useReducedMotion();
-
-  const onScroll = useCallback(() => {
-    if (ticking.current) return;
-    ticking.current = true;
-    requestAnimationFrame(() => {
-      const y = typeof window !== 'undefined' ? window.pageYOffset : 0;
-      setIsVisible(y > threshold);
-      ticking.current = false;
-    });
-  }, [threshold]);
-
-  const scrollToTop = useCallback(() => {
-    if (typeof window === 'undefined') return;
-    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-  }, [reduceMotion]);
+export default function ScrollToTopButton({
+  showAfter = 300,     // px de rolagem para exibir
+  right = 24,          // distância da borda direita (px)
+  bottom = 96,         // distância do fundo (px) — maior p/ não colidir com o WhatsApp
+  size = 56            // diâmetro do botão (px)
+}) {
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [onScroll]);
+    const onScroll = () => setVisible(window.scrollY > showAfter);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // estado correto ao carregar
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [showAfter]);
 
-  const style = {
-    right,
-    bottom: `max(${bottom}px, env(safe-area-inset-bottom, 0px) + ${bottom}px)`,
-    width: 56,
-    height: 56,
-    backgroundColor: '#A0D3F1',
-  };
+  const goTop = () =>
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          type="button"
-          onClick={scrollToTop}
-          aria-label="Voltar ao topo"
-          title="Voltar ao topo"
-          className={`scroll-to-top absolute z-50 flex items-center justify-center rounded-full shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 ${className}`}
-          style={style}
-          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-          animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-          whileHover={reduceMotion ? {} : { scale: 1.08 }}
-          whileTap={reduceMotion ? {} : { scale: 0.95 }}
-        >
-          <ArrowUp width={22} height={22} stroke="#111" strokeWidth={2.2} />
-        </motion.button>
-      )}
-    </AnimatePresence>
+    <button
+      aria-label="Voltar ao topo"
+      onClick={goTop}
+      className={`fixed z-[60] rounded-full shadow-lg transition-opacity duration-200 ${
+        visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}
+      style={{
+        right: `${right}px`,
+        bottom: `${bottom}px`,
+        width: `${size}px`,
+        height: `${size}px`,
+        background: "#A0D3F1",
+      }}
+    >
+      {/* ícone (seta para cima) */}
+      <svg
+        width={Math.round(size * 0.45)}
+        height={Math.round(size * 0.45)}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#222223"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ display: "block", margin: "0 auto" }}
+      >
+        <path d="M12 19V5" />
+        <path d="M5 12l7-7 7 7" />
+      </svg>
+    </button>
   );
-};
-
-export default ScrollToTopButton;
+}

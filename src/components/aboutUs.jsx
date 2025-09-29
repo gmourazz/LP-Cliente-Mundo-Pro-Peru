@@ -83,85 +83,105 @@ const AboutUs = () => {
           transition={{ duration: 0.6 }}
           className="relative z-[10] font-extrabold text-center md:text-right px-8 md:px-8 text-[44px] sm:text-[50px] md:text-[100px] leading-[0.70] mb-[0px]"
           style={{ color: '#F9F2E1', fontFamily: '"Work Sans", sans-serif' }}
-        > <br></br> <strong>
-          Sobre nós </strong>
+        >
+          <br /><strong>Sobre nós</strong>
         </motion.h2>
 
-        {/* balão bege envolvendo fotos + cards */}
-        <div
-          className="
-            relative z-[5]
-            -mx-4 md:mx-0
-            px-8 sm:px-8 md:px-12
-            pt-5 md:pt-10
-            pb-12 md:pb-14
-            rounded-[28px] md:rounded-[36px]
-            overflow-hidden
-          "
-          style={{ backgroundColor: '#F9F2E1' }}
-        >
-          {/* “M” apenas no desktop */}
-          <div className="hidden md:block absolute left-0 -top-24 pointer-events-none opacity-70" style={{ width: 432, height: 501 }}>
-            <img src="/img/beneficios/M.png" alt="Marca / M" className="w-[302px] h-[301px] object-contain" />
+        {/* ===== Wrapper para posicionar o M entre o fundo laranja (atrás) e o balão bege (na frente) ===== */}
+        <div className="relative mt-0">
+          {/* M decorativo — fora do balão para não ser cortado pelo overflow */}
+          <div className="pointer-events-none">
+            {/* Desktop (MENOR) */}
+            <div className="hidden md:block absolute left-8 -top-44 z-[2] w-[220px] opacity-70">
+              <img
+                src="/img/beneficios/M.png"
+                alt="Marca / M"
+                className="w-full h-auto object-contain"
+                loading="lazy"
+                onError={(e) => {
+                  if (!e.currentTarget.dataset.triedalt) {
+                    e.currentTarget.dataset.triedalt = '1';
+                    e.currentTarget.src = '/img/M.png';
+                  } else {
+                    e.currentTarget.style.display = 'none';
+                  }
+                }}
+              />
+            </div>
+
           </div>
 
-          {/* fotos dos funcionários */}
-          <div className="relative z-[1]">
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
-              {teamPhotos.map((p, idx) => (
+          {/* balão bege envolvendo fotos + cards (fica por cima do M) */}
+          <div
+            className="
+              relative z-[5]
+              -mx-4 md:mx-0
+              px-8 sm:px-8 md:px-12
+              pt-5 md:pt-10
+              pb-12 md:pb-14
+              rounded-[28px] md:rounded-[36px]
+              overflow-hidden
+            "
+            style={{ backgroundColor: '#F9F2E1' }}
+          >
+            {/* fotos dos funcionários */}
+            <div className="relative z-[1]">
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
+                {teamPhotos.map((p, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: idx * 0.03 }}
+                    className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full overflow-hidden shadow-md bg-white"
+                    title={p.label}
+                  >
+                    <a href={p.src} target="_blank" rel="noreferrer" className="block w-full h-full">
+                      <img
+                        src={p.src}
+                        alt={p.label}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => { e.currentTarget.src = '/img/about/team-placeholder.jpg'; }}
+                      />
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* cards azuis */}
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-10">
+              {cards.map((card, index) => (
                 <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: idx * 0.03 }}
-                  className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full overflow-hidden shadow-md bg-white"
-                  title={p.label}
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.12 }}
+                  className="p-6 md:p-8 rounded-[26px] md:rounded-2xl"
+                  style={{ backgroundColor: '#A0D3F1' }}
                 >
-                  <a href={p.src} target="_blank" rel="noreferrer" className="block w-full h-full">
-                    <img
-                      src={p.src}
-                      alt={p.label}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => { e.currentTarget.src = '/img/about/team-placeholder.jpg'; }}
-                    />
-                  </a>
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <img src={card.imgSrc} alt="" className="w-[52px] h-[52px] md:w-[70px] md:h-[70px] object-contain shrink-0" />
+                    <div className="flex-1">
+                      <h4
+                        className="mb-2 md:mb-5 font-extrabold"
+                        style={{ color: '#AC0039', fontFamily: '"Work Sans", sans-serif', fontSize: 22, lineHeight: 1.05 }}
+                      >
+                        {card.title}
+                      </h4>
+                      <p className="text-[12px] md:text-[15px] leading-[1.22] md:leading-[1.35]" style={{ color: '#222223', letterSpacing: '0.1px' }}>
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
-
-          {/* cards azuis */}
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-10">
-            {cards.map((card, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.12 }}
-                className="p-6 md:p-8 rounded-[26px] md:rounded-2xl"
-                style={{ backgroundColor: '#A0D3F1' }}
-              >
-                <div className="flex items-start gap-3 md:gap-4">
-                  <img src={card.imgSrc} alt="" className="w-[52px] h-[52px] md:w-[70px] md:h-[70px] object-contain shrink-0" />
-                  <div className="flex-1">
-                    <h4
-                      className="mb-2 md:mb-5 font-extrabold"
-                      style={{ color: '#AC0039', fontFamily: '"Work Sans", sans-serif', fontSize: 22, lineHeight: 1.05 }}
-                    >
-                      {card.title}
-                    </h4>
-                    <p className="text-[12px] md:text-[15px] leading-[1.22] md:leading-[1.35]" style={{ color: '#222223', letterSpacing: '0.1px' }}>
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* fim do balão bege */}
         </div>
-        {/* fim do balão bege */}
       </div>
     </section>
   );

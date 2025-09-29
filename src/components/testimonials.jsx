@@ -35,8 +35,6 @@ const Testimonials = () => {
       text: "A realização de um sonho é sempre gratificante. Ainda, realizar este sonho somente você e sua filha, é emocionante. Só agradecer ao acolhimento, atendimento e rapidez nas respostas quando necessário. Obrigada por participar deste sonho!",
       avatar: "/img/feedbacks/maria.jpg",
     },
-
-    /* ======== novas 6 caixinhas para você subir os textos ======== */
     {
       name: "Michelly Ribas",
       text: "Fizemos nossa primeira viagem internacional, tínhamos muito medo, mas a empresa Mundo Pró foi incrível 👏🏻 \n Nos deixou segura quanto aos detalhes, o Gabriel Neiva nos deu todo suporte para realização desse sonho. \n A princípio meu sonho era conhecer a Ilha de San Andrés, e no fim conhecemos CARTAGENA + SAN ANDRES experiência incrível, fomos bem atendidos, tivemos todo o suporte e sem dúvida saímos contente e realizados, e com gostinho de quero mais !!! ✨ Obrigada MUNDO PRÓ 🌎",
@@ -69,8 +67,7 @@ const Testimonials = () => {
     },
   ];
 
-  /* ======================= DESKTOP (SEM ANIMAÇÃO) ======================= */
-  // 3 cards por página
+  /* ======================= DESKTOP (COM AUTOPLAY 6s) ======================= */
   const deskPages = useMemo(
     () =>
       Array.from({ length: Math.ceil(reviews.length / 3) }, (_, i) =>
@@ -79,7 +76,7 @@ const Testimonials = () => {
     [reviews]
   );
   const [emblaRefDesk, emblaDesk] = useEmblaCarousel({
-    loop: false,
+    loop: true,
     align: "start",
     dragFree: false,
   });
@@ -88,14 +85,22 @@ const Testimonials = () => {
     if (!emblaDesk) return;
     setSelectedDesk(emblaDesk.selectedScrollSnap());
   }, [emblaDesk]);
+  
   useEffect(() => {
     if (!emblaDesk) return;
     onSelectDesk();
     emblaDesk.on("select", onSelectDesk);
     emblaDesk.on("reInit", onSelectDesk);
+    
+    // Autoplay para desktop - 6 segundos
+    const autoplayInterval = setInterval(() => {
+      emblaDesk.scrollNext();
+    }, 6000);
+    
     return () => {
       emblaDesk?.off("select", onSelectDesk);
       emblaDesk?.off("reInit", onSelectDesk);
+      clearInterval(autoplayInterval);
     };
   }, [emblaDesk, onSelectDesk]);
 
@@ -113,11 +118,16 @@ const Testimonials = () => {
     onSelect();
     emblaMob.on("select", onSelect);
     emblaMob.on("reInit", onSelect);
-    const id = setInterval(() => emblaMob.scrollNext(), 5000);
+    
+    // Autoplay para mobile - 5 segundos
+    const autoplayInterval = setInterval(() => {
+      emblaMob.scrollNext();
+    }, 5000);
+    
     return () => {
       emblaMob.off("select", onSelect);
       emblaMob.off("reInit", onSelect);
-      clearInterval(id);
+      clearInterval(autoplayInterval);
     };
   }, [emblaMob]);
 
@@ -137,7 +147,7 @@ const Testimonials = () => {
   );
 
   const Card = ({ review }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg h-full">
+    <div className="bg-white p-6 rounded-xl h-full">
       <div className="flex items-center mb-3 gap-3">
         <img
           src="/img/googlelogo.jpeg"
@@ -245,7 +255,7 @@ const Testimonials = () => {
           />
         </div>
 
-        {/* ===== DESKTOP: 3 cards por página ===== */}
+        {/* ===== DESKTOP: 3 cards por página + AUTOPLAY ===== */}
         <div className="hidden md:block">
           <div className="embla" ref={emblaRefDesk}>
             <div className="embla__container">
@@ -290,7 +300,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* ===== MOBILE: 1 card/slide + autoplay 5s ===== */}
+        {/* ===== MOBILE: 1 card/slide + AUTOPLAY 5s ===== */}
         <div className="md:hidden px-2">
           <div className="embla" ref={emblaRefMob}>
             <div className="embla__container">

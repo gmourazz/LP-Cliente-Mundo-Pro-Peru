@@ -337,7 +337,7 @@ const Benefits = () => {
                       color: "#FFFFFF",                       // branco
                       fontFamily: '"Work Sans", sans-serif',  // Work Sans
                       fontWeight: 800,                        // negrito
-                      fontSize: "20px",                       // tamanho 22
+                      fontSize: "18px",                       // tamanho 22
                       lineHeight: 1.15,
                       letterSpacing: "-0.01em",
                       whiteSpace: "pre-line",                 // respeitar quebras \n

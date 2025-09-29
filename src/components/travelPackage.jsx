@@ -58,13 +58,13 @@ const days = [
 
 /* ===== tamanhos EXATOS dos balões (desktop) ===== */
 const BALLOON_SIZE = [
-  { w: 527, h: 109 }, // 1º
+  { w: 750, h: 109 }, // 1º - AUMENTADO para 600x109 (era 527)
   { w: 736, h: 250 }, // 2º
-  { w: 736, h: 318 }, // 3º
+  { w: 800, h: 318 }, // 3º
   { w: 738, h: 189 }, // 4º
   { w: 736, h: 301 }, // 5º
   { w: 738, h: 195 }, // 6º
-  { w: 734, h: 186 }, // 7º
+  { w: 750, h: 186 }, // 7º
 ];
 
 const OVERLAP_PX = 84;
@@ -88,7 +88,7 @@ const TEXT_STYLES = {
   body: (i) => ({
     fontSize: i === 1 || i === 5 ? "12.6px" : i === 2 || i === 4 ? "12.6px" : i === 3 ? "13.2px" : "15px",
     lineHeight: i === 1 ? 1.12 : i === 5 ? 1.16 : 1.18,
-    maxWidth: i === 1 ? "430px" : i === 2 ? "520px" : i === 3 ? "560px" : i === 4 ? "520px" : i === 5 ? "500px" : "auto",
+    maxWidth: i === 1 ? "500px" : i === 2 ? "520px" : i === 3 ? "560px" : i === 4 ? "520px" : i === 5 ? "500px" : "auto", // Aumentado para 500px no 1º dia
     letterSpacing: "-0.01em",
   }),
   balloonPadding: (i) => ({
@@ -111,8 +111,11 @@ const day2Lines = [
 
 export default function TravelPackage() {
   return (
-    <section className="py-16 md:py-20" style={{ backgroundColor: "#A0D3F1" }}>
-      <div className="container mx-auto max-w-[1320px] px-4 md:px-86">
+    <section className="relative overflow-visible py-16 md:py-20" style={{ backgroundColor: "#A0D3F1" }}>
+      {/* faixa clara decorativa à esquerda */}
+      <div aria-hidden className="absolute top-0 left-0 h-full" style={{ width: 8, background: 'rgba(255,255,255,0.35)' }} />
+
+      <div className="container mx-auto max-w-[1320px] px-4 md:px-6">
 
         {/* =================== HEADER (DESKTOP) =================== */}
         <div className="hidden md:block">
@@ -152,20 +155,21 @@ export default function TravelPackage() {
             </div>
 
             {/* Corpo */}
-            <p
-              className="mt-6 max-w-[720px]"
-              style={{
-                color: "#222223",
-                fontFamily: '"Roboto Mono", monospace',
-                fontSize: "15px",
-                lineHeight: 1.35,
-                letterSpacing: "-0.03em",
-              }}
-            >
-              Nossos pacotes de viagem foram planejados para que você aproveite o melhor do Peru sem
-              preocupações. Uma forma segura e organizada de explorar o país, com hospedagem, passeios
-              e serviços que garantem mais comodidade durante toda a viagem.
-            </p>
+            <div className="mt-6 max-w-[720px] space-y-3">
+              <p
+                style={{
+                  color: "#222223",
+                  fontFamily: '"Roboto Mono", monospace',
+                  fontSize: "15px",
+                  lineHeight: 1.35,
+                  letterSpacing: "-0.03em",
+                }}
+              >
+                Nossos pacotes de viagem foram planejados para que você aproveite o melhor do Peru sem
+                preocupações. Uma forma segura e organizada de explorar o país, com hospedagem, passeios
+                e serviços que garantem mais comodidade durante toda a viagem.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -173,7 +177,7 @@ export default function TravelPackage() {
         <div className="md:hidden">
           <div className="flex flex-col items-center text-center mb-8">
             {/* Título com mapinha à esquerda (57.18 x 45) */}
-            <div className="flex items-center gap-0">
+            <div className="flex items-center gap-4">
               <img
                 src="/img/mapinha.png"
                 alt="Mapa"
@@ -199,7 +203,7 @@ export default function TravelPackage() {
               style={{
                 color: "#222223",
                 fontFamily: '"Work Sans", sans-serif',
-                fontSize: "18px",
+                fontSize: "16px",
                 lineHeight: 1.05,
               }}
             >
@@ -207,20 +211,21 @@ export default function TravelPackage() {
             </div>
 
             {/* Corpo (mesma fonte do desktop, menor por responsividade) */}
-            <p
-              className="mt-3 px-3 max-w-[330px]"
-              style={{
-                color: "#222223",
-                fontFamily: '"Roboto Mono", monospace',
-                fontSize: "11px",
-                lineHeight: 1.35,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              Nossos pacotes de viagem foram planejados para que você aproveite o melhor do Peru sem
-              preocupações. Uma forma segura e organizada de explorar o país, com hospedagem, passeios
-              e serviços que garantem mais comodidade durante toda a viagem.
-            </p>
+            <div className="mt-3 px-3 max-w-[330px] space-y-2">
+              <p
+                style={{
+                  color: "#222223",
+                  fontFamily: '"Roboto Mono", monospace',
+                  fontSize: "10px",
+                  lineHeight: 1.35,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                Nossos pacotes de viagem foram planejados para que você aproveite o melhor do Peru sem
+                preocupações. Uma forma segura e organizada de explorar o país, com hospedagem, passeios
+                e serviços que garantem mais comodidade durante toda a viagem.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -245,6 +250,10 @@ export default function TravelPackage() {
               const shiftTitle = i === 1 ? 210 : 0;
               const shiftInner = i === 1 ? 180 : 0;
 
+              // AJUSTE ESPECÍFICO PARA O 7º DIA - alinhamento do número
+              const titleMarginLeft = i === 6 ? 180 : (i === 0 || i === 2 || i === 4 ? 180 : shiftTitle);
+              const balloonPaddingLeft = i === 6 ? 150 : (i === 0 || i === 2 || i === 4 ? 150 : shiftInner);
+
               return (
                 <motion.div
                   key={`desk-${d.day}`}
@@ -268,27 +277,27 @@ export default function TravelPackage() {
                     className="relative z-10 w-full"
                     style={{ maxWidth: Math.max(w + OVERLAP_PX, 760) }}
                   >
-                    {/* TÍTULO */}
+                    {/* TÍTULO - Ajuste para dias 1, 3, 5 e 7 */}
                     <div
                       className="font-extrabold"
                       style={{
                         color: "#FD4F0D",
                         fontFamily: '"Work Sans", sans-serif',
                         ...titleS,
-                        marginLeft: shiftTitle,
+                        marginLeft: titleMarginLeft,
                       }}
                     >
                       {d.day}
                     </div>
 
-                    {/* BALÃO */}
+                    {/* BALÃO - Ajuste para dias 1, 3, 5 e 7 */}
                     <div
-                      className="rounded-[24px] shadow-xl"
+                      className="rounded-[12px] shadow-xl" // AUMENTADO o border-radius para 12px
                       style={{
                         backgroundColor: "#F9F2E1",
                         width: `${w}px`,
                         minHeight: `${h}px`,
-                        paddingLeft: `${padLeft + shiftInner}px`,
+                        paddingLeft: `${padLeft + balloonPaddingLeft}px`,
                         paddingRight: `${padRight}px`,
                         ...padS,
                         marginLeft: imageLeft ? `-${OVERLAP_PX}px` : 0,
@@ -329,16 +338,18 @@ export default function TravelPackage() {
                           </div>
                         </div>
                       ) : (
-                        <p
-                          style={{
-                            color: "#222223",
-                            fontFamily: '"Roboto Mono", monospace',
-                            textAlign: "left",
-                            ...bodyS,
-                          }}
-                        >
-                          {d.body}
-                        </p>
+                        <div className="space-y-2">
+                          <p
+                            style={{
+                              color: "#222223",
+                              fontFamily: '"Roboto Mono", monospace',
+                              textAlign: "left",
+                              ...bodyS,
+                            }}
+                          >
+                            {d.body}
+                          </p>
+                        </div>
                       )}
                     </div>
                   </motion.div>
@@ -394,18 +405,20 @@ export default function TravelPackage() {
                     >
                       {d.subtitle}
                     </h3>
-                    <p
-                      style={{
-                        color: "#222223",
-                        fontFamily: '"Roboto Mono", monospace',
-                        fontSize: "13px",
-                        lineHeight: 1.16,
-                        letterSpacing: "-0.01em",
-                        textAlign: "left",
-                      }}
-                    >
-                      {d.body}
-                    </p>
+                    <div className="space-y-1">
+                      <p
+                        style={{
+                          color: "#222223",
+                          fontFamily: '"Roboto Mono", monospace',
+                          fontSize: "13px",
+                          lineHeight: 1.16,
+                          letterSpacing: "-0.01em",
+                          textAlign: "left",
+                        }}
+                      >
+                        {d.body}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
