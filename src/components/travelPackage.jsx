@@ -23,37 +23,58 @@ const itemVariants = (fromLeft) => ({
     opacity: 1,
     x: 0,
     scale: 1,
-    transition: { type: "tween", ease: [0.22, 1, 0.36, 1], duration: 0.5 * SPEED },
+    transition: {
+      type: "tween",
+      ease: [0.22, 1, 0.36, 1],
+      duration: 0.5 * SPEED,
+    },
   },
 });
 
 /* ===== dados ===== */
 const days = [
-  { day: "1º DIA", subtitle: "Chegada em Cusco", body: "Transfer até o hotel e dia livre em Cusco.", image: "/img/beneficios/primeirodia.png" },
+  {
+    day: "1º DIA",
+    subtitle: "Chegada em Cusco",
+    body: "Transfer até o hotel e dia livre em Cusco.",
+    image: "/img/beneficios/primeirodia.png",
+  },
   {
     day: "2º DIA",
     subtitle: "Cusco – Águas Calientes",
-    body:
-      "Retirada no hotel de Cusco e início do trajeto de duas horas de ônibus até a estação de trem de Ollantaytambo. Ao chegar, subiremos em um trem e faremos uma viagem de uma hora e meia adentrando a cordilheira dos Andes. Chegada ao povoado de Aguas Calientes, iremos levá-lo ao hotel onde nos hospedaremos essa noite. No resto da tarde, você terá tempo livre.",
+    body: "Retirada no hotel de Cusco e início do trajeto de duas horas de ônibus até a estação de trem de Ollantaytambo. Ao chegar, subiremos em um trem e faremos uma viagem de uma hora e meia adentrando a cordilheira dos Andes. Chegada ao povoado de Aguas Calientes, iremos levá-lo ao hotel onde nos hospedaremos essa noite. No resto da tarde, você terá tempo livre.",
     image: "/img/beneficios/segundodia.png",
   },
   {
     day: "3º DIA",
     subtitle: "Machu Picchu – Cusco",
-    body:
-      "Depois de tomar o café da manhã no hotel, pegaremos o ônibus para viver o ponto alto da viagem: Machu Picchu. Ao chegar lá, faremos uma visita guiada de duas horas. Depois, você terá outras duas horas de tempo livre para percorrer a zona ou subir por conta própria as montanhas Huayna Picchu ou Machu Picchu. A seguir, voltaremos de ônibus a Aguas Calientes, onde você terá tempo para almoçar por conta própria e seguir explorando o pequeno povoado andino. Finalizaremos a excursão voltando de trem até Ollantaytambo e de lá iremos de ônibus ao seu hotel de Cusco.",
+    body: "Depois de tomar o café da manhã no hotel, pegaremos o ônibus para viver o ponto alto da viagem: Machu Picchu. Ao chegar lá, faremos uma visita guiada de duas horas. Depois, você terá outras duas horas de tempo livre para percorrer a zona ou subir por conta própria as montanhas Huayna Picchu ou Machu Picchu. A seguir, voltaremos de ônibus a Aguas Calientes, onde você terá tempo para almoçar por conta própria e seguir explorando o pequeno povoado andino. Finalizaremos a excursão voltando de trem até Ollantaytambo e de lá iremos de ônibus ao seu hotel de Cusco.",
     image: "/img/beneficios/terceirodia.png",
   },
-  { day: "4º DIA", subtitle: "Vale Sagrado dos Incas", body: "Excursão ao Vale Sagrado dos Incas (13 horas). Visitando Chinchero, Moray, Maras, Salinas, Ollantaytambo e Pisac.", image: "/img/beneficios/quartodia.png" },
+  {
+    day: "4º DIA",
+    subtitle: "Vale Sagrado dos Incas",
+    body: "Excursão ao Vale Sagrado dos Incas (13 horas). Visitando Chinchero, Moray, Maras, Salinas, Ollantaytambo e Pisac.",
+    image: "/img/beneficios/quartodia.png",
+  },
   {
     day: "5º DIA",
     subtitle: "Cusco - Trilha pela Montanha Arco-Íris",
-    body:
-      "Entre 4h e 5h, passaremos para buscá-lo no seu hotel de Cusco para começar esta experiência que será inesquecível. A rota que seguiremos é de dificuldade alta. Recomendamos este tour exclusivamente para pessoas que não tenham problemas cardíacos. O tour é feito em altas altitudes, que alcançam aproximadamente 5.200 metros.",
+    body: "Entre 4h e 5h, passaremos para buscá-lo no seu hotel de Cusco para começar esta experiência que será inesquecível. A rota que seguiremos é de dificuldade alta. Recomendamos este tour exclusivamente para pessoas que não tenham problemas cardíacos. O tour é feito em altas altitudes, que alcançam aproximadamente 5.200 metros.",
     image: "/img/beneficios/quintodia.png",
   },
-  { day: "6º DIA", subtitle: "Cusco - Lagoa Humantay", body: "Nesta excursão à Lagoa Humantay, subiremos a mais de 4.000 metros para visitar um espetáculo da natureza localizado na Cordilheira dos Andes.", image: "/img/beneficios/sextodia.png" },
-  { day: "7º DIA", subtitle: "Saída Cusco - Brasil", body: "Em horário previsto, transfer para o aeroporto e volta ao Brasil.", image: "/img/beneficios/setimodia.png" },
+  {
+    day: "6º DIA",
+    subtitle: "Cusco - Lagoa Humantay",
+    body: "Nesta excursão à Lagoa Humantay, subiremos a mais de 4.000 metros para visitar um espetáculo da natureza localizado na Cordilheira dos Andes.",
+    image: "/img/beneficios/sextodia.png",
+  },
+  {
+    day: "7º DIA",
+    subtitle: "Saída Cusco - Brasil",
+    body: "Em horário previsto, transfer para o aeroporto e volta ao Brasil.",
+    image: "/img/beneficios/setimodia.png",
+  },
 ];
 
 /* ===== tamanhos EXATOS dos balões (desktop) ===== */
@@ -69,6 +90,9 @@ const BALLOON_SIZE = [
 
 const OVERLAP_PX = 84;
 const NEED_EXTRA_PADDING = new Set([0, 2, 4, 6]); // 1,3,5,7 com foto à esquerda
+
+/* ===== DIAS COM TÍTULO ALINHADO À ESQUERDA ===== */
+const TITLE_ALIGN_LEFT = new Set([0, 2, 3, 4, 5, 6]); // 1º, 3º, 4º, 5º, 6º, 7º dia
 
 /* ===== estilos ===== */
 const TEXT_STYLES = {
@@ -86,9 +110,27 @@ const TEXT_STYLES = {
     marginBottom: "8px",
   }),
   body: (i) => ({
-    fontSize: i === 1 || i === 5 ? "12.6px" : i === 2 || i === 4 ? "12.6px" : i === 3 ? "13.2px" : "15px",
+    fontSize:
+      i === 1 || i === 5
+        ? "12.6px"
+        : i === 2 || i === 4
+        ? "12.6px"
+        : i === 3
+        ? "13.2px"
+        : "15px",
     lineHeight: i === 1 ? 1.12 : i === 5 ? 1.16 : 1.18,
-    maxWidth: i === 1 ? "500px" : i === 2 ? "520px" : i === 3 ? "560px" : i === 4 ? "520px" : i === 5 ? "500px" : "auto", // Aumentado para 500px no 1º dia
+    maxWidth:
+      i === 1
+        ? "500px"
+        : i === 2
+        ? "520px"
+        : i === 3
+        ? "560px"
+        : i === 4
+        ? "520px"
+        : i === 5
+        ? "500px"
+        : "auto",
     letterSpacing: "-0.01em",
   }),
   balloonPadding: (i) => ({
@@ -111,12 +153,18 @@ const day2Lines = [
 
 export default function TravelPackage() {
   return (
-    <section className="relative overflow-visible py-16 md:py-20" style={{ backgroundColor: "#A0D3F1" }}>
+    <section
+      className="relative overflow-visible py-16 md:py-20"
+      style={{ backgroundColor: "#A0D3F1" }}
+    >
       {/* faixa clara decorativa à esquerda */}
-      <div aria-hidden className="absolute top-0 left-0 h-full" style={{ width: 8, background: 'rgba(255,255,255,0.35)' }} />
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 h-full"
+        style={{ width: 8, background: "rgba(255,255,255,0.35)" }}
+      />
 
       <div className="container mx-auto max-w-[1320px] px-4 md:px-6">
-
         {/* =================== HEADER (DESKTOP) =================== */}
         <div className="hidden md:block">
           <div className="flex flex-col items-center text-center mb-16">
@@ -151,7 +199,9 @@ export default function TravelPackage() {
                 lineHeight: 1.05,
               }}
             >
-              Conheça o Peru com praticidade,<br />segurança e conforto
+              Conheça o Peru com praticidade,
+              <br />
+              segurança e conforto
             </div>
 
             {/* Corpo */}
@@ -165,9 +215,10 @@ export default function TravelPackage() {
                   letterSpacing: "-0.03em",
                 }}
               >
-                Nossos pacotes de viagem foram planejados para que você aproveite o melhor do Peru sem
-                preocupações. Uma forma segura e organizada de explorar o país, com hospedagem, passeios
-                e serviços que garantem mais comodidade durante toda a viagem.
+                Nossos pacotes de viagem foram planejados para que você
+                aproveite o melhor do Peru sem preocupações. Uma forma segura e
+                organizada de explorar o país, com hospedagem, passeios e
+                serviços que garantem mais comodidade durante toda a viagem.
               </p>
             </div>
           </div>
@@ -176,7 +227,7 @@ export default function TravelPackage() {
         {/* =================== HEADER (MOBILE) =================== */}
         <div className="md:hidden">
           <div className="flex flex-col items-center text-center mb-8">
-            {/* Título com mapinha à esquerda (57.18 x 45) */}
+            {/* Título com mapinha à esquerda */}
             <div className="flex items-center gap-4">
               <img
                 src="/img/mapinha.png"
@@ -197,7 +248,7 @@ export default function TravelPackage() {
               </h2>
             </div>
 
-            {/* Subtítulo (mesmas fontes do desktop) */}
+            {/* Subtítulo */}
             <div
               className="mt-5 font-extrabold"
               style={{
@@ -207,10 +258,12 @@ export default function TravelPackage() {
                 lineHeight: 1.05,
               }}
             >
-              Conheça o Peru com praticidade,<br />segurança e conforto
+              Conheça o Peru com praticidade,
+              <br />
+              segurança e conforto
             </div>
 
-            {/* Corpo (mesma fonte do desktop, menor por responsividade) */}
+            {/* Corpo */}
             <div className="mt-3 px-3 max-w-[330px] space-y-2">
               <p
                 style={{
@@ -221,9 +274,10 @@ export default function TravelPackage() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                Nossos pacotes de viagem foram planejados para que você aproveite o melhor do Peru sem
-                preocupações. Uma forma segura e organizada de explorar o país, com hospedagem, passeios
-                e serviços que garantem mais comodidade durante toda a viagem.
+                Nossos pacotes de viagem foram planejados para que você
+                aproveite o melhor do Peru sem preocupações. Uma forma segura e
+                organizada de explorar o país, com hospedagem, passeios e
+                serviços que garantem mais comodidade durante toda a viagem.
               </p>
             </div>
           </div>
@@ -239,20 +293,25 @@ export default function TravelPackage() {
 
               let padLeft = 32;
               let padRight = 32;
-              if (imageLeft && NEED_EXTRA_PADDING.has(i)) padLeft = 32 + OVERLAP_PX;
+              if (imageLeft && NEED_EXTRA_PADDING.has(i))
+                padLeft = 32 + OVERLAP_PX;
 
               const titleS = TEXT_STYLES.title(i);
               const subS = TEXT_STYLES.subtitle(i);
               const bodyS = TEXT_STYLES.body(i);
               const padS = TEXT_STYLES.balloonPadding(i);
 
-              // deslocamentos de TEXTO apenas para o 2º DIA (como no seu código)
+              // deslocamentos de TEXTO apenas para o 2º DIA
               const shiftTitle = i === 1 ? 210 : 0;
               const shiftInner = i === 1 ? 180 : 0;
 
-              // AJUSTE ESPECÍFICO PARA O 7º DIA - alinhamento do número
-              const titleMarginLeft = i === 6 ? 180 : (i === 0 || i === 2 || i === 4 ? 180 : shiftTitle);
-              const balloonPaddingLeft = i === 6 ? 150 : (i === 0 || i === 2 || i === 4 ? 150 : shiftInner);
+              // AJUSTE PARA TÍTULO ALINHADO À ESQUERDA (1º, 3º, 4º, 5º, 6º, 7º)
+              const titleMarginLeft = TITLE_ALIGN_LEFT.has(i)
+                ? 180
+                : shiftTitle;
+              const balloonPaddingLeft = TITLE_ALIGN_LEFT.has(i)
+                ? 150
+                : shiftInner;
 
               return (
                 <motion.div
@@ -260,15 +319,25 @@ export default function TravelPackage() {
                   variants={rowVariants(fromLeft)}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: false, amount: 0.45, margin: "-10% 0px -10% 0px" }}
-                  className={`relative flex flex-col items-center gap-10 ${imageLeft ? "lg:flex-row" : "lg:flex-row-reverse"}`}
+                  viewport={{
+                    once: false,
+                    amount: 0.45,
+                    margin: "-10% 0px -10% 0px",
+                  }}
+                  className={`relative flex flex-col items-center gap-10 ${
+                    imageLeft ? "lg:flex-row" : "lg:flex-row-reverse"
+                  }`}
                 >
                   {/* Imagem */}
                   <motion.div
                     variants={itemVariants(fromLeft)}
                     className="relative z-20 w-full max-w-[560px] h-[410px] rounded-[28px] overflow-hidden shadow-2xl"
                   >
-                    <img src={d.image} alt={d.subtitle} className="w-full h-full object-cover" />
+                    <img
+                      src={d.image}
+                      alt={d.subtitle}
+                      className="w-full h-full object-cover"
+                    />
                   </motion.div>
 
                   {/* Texto */}
@@ -277,7 +346,7 @@ export default function TravelPackage() {
                     className="relative z-10 w-full"
                     style={{ maxWidth: Math.max(w + OVERLAP_PX, 760) }}
                   >
-                    {/* TÍTULO - Ajuste para dias 1, 3, 5 e 7 */}
+                    {/* TÍTULO - Ajuste para dias com alinhamento à esquerda */}
                     <div
                       className="font-extrabold"
                       style={{
@@ -290,9 +359,9 @@ export default function TravelPackage() {
                       {d.day}
                     </div>
 
-                    {/* BALÃO - Ajuste para dias 1, 3, 5 e 7 */}
+                    {/* BALÃO */}
                     <div
-                      className="rounded-[12px] shadow-xl" // AUMENTADO o border-radius para 12px
+                      className="rounded-[12px] shadow-xl"
                       style={{
                         backgroundColor: "#F9F2E1",
                         width: `${w}px`,
@@ -362,7 +431,7 @@ export default function TravelPackage() {
         {/* =================== LISTA DE DIAS (MOBILE) =================== */}
         <div className="md:hidden">
           <div className="flex flex-col items-center gap-10">
-            {days.map((d) => (
+            {days.map((d, i) => (
               <motion.div
                 key={`mob-${d.day}`}
                 variants={rowVariants(true)}
@@ -386,7 +455,11 @@ export default function TravelPackage() {
 
                 <div className="relative w-[340px]">
                   <div className="absolute top-0 left-0 right-0 h-[252px] rounded-[20px] overflow-hidden shadow-xl z-20">
-                    <img src={d.image} alt={d.subtitle} className="w-full h-full object-cover" />
+                    <img
+                      src={d.image}
+                      alt={d.subtitle}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div
@@ -425,7 +498,6 @@ export default function TravelPackage() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
